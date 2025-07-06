@@ -1,0 +1,47 @@
+﻿@page "/learn-blazor/bind-prop"
+
+<h3>BindProp</h3>
+
+name of product : @product.Name
+<br />
+price of product : @product.Price
+<br />
+is product available : @(product.IsAvailable?"available":"not available")
+<br />
+<input type="number" name="name" @bind=product.Price @bind:event="oninput" />
+<br />
+
+product available :  <input type="checkbox" name="name" @bind=product.IsAvailable/>
+<br />
+<select @bind="selectedProp">
+    @foreach(var prop in product.ProductProperties)
+    {
+        <option value="@prop.key">@prop.key</option>
+    }
+</select>
+<br />
+Selected Prop:@selectedProp
+@if (!string.IsNullOrEmpty(selectedProp))
+{
+    <p>Selected Value: @product.ProductProperties.FirstOrDefault(x=>x.key==selectedProp).value</p>
+}
+
+
+@code {
+    private string selectedProp;
+
+    Product product = new()
+    {
+        Name = "Blazor",
+        Price = 100,
+        IsAvailable = true,
+        ProductProperties= new List<Product_Prop>()
+        {
+                new Product_Prop{Id=1,key="color",value="red"},
+                new Product_Prop{Id=2,key="size",value="big"},
+                new Product_Prop{Id=3,key="flavor",value="hot"},
+        }
+    };
+    
+
+}
