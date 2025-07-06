@@ -1,0 +1,66 @@
+﻿@page "/landing-app"
+@inject NavigationManager Navigation
+
+<style>
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    .center-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .welcome-btn {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: 2px solid white;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        width: 20rem;
+        margin-top: 20rem;
+    }
+
+        .welcome-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+</style>
+
+<video class="video-background"
+       autoplay
+       muted
+       playsinline
+       loop>
+    <!-- Added loop attribute here -->
+    <source src="Landing.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="center-container">
+    <button @onclick="OnVideoClicked" class="welcome-btn">Welcome</button>
+</div>
+
+@code {
+
+    public void OnVideoClicked()
+    {
+        Console.WriteLine("OnVideoClicked called");
+    }
+}

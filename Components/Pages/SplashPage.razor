@@ -1,0 +1,50 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager Navigation
+
+<style>
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        padding: 2rem;
+    }
+</style>
+
+
+<video id="splashVideo" class="video-background"
+       autoplay
+       muted
+       playsinline
+       @onended="OnVideoEnded"
+       allow="autoplay">
+
+    <source src="Splash_Screen_Animation.mp4" type="video/mp4">
+
+    Your browser does not support the video tag.
+
+</video>
+
+
+
+
+
+@code {
+
+    private async Task OnVideoEnded(EventArgs e)
+    {
+        Console.WriteLine("OnVideoEnded called");
+        Navigation.NavigateTo("/landing-app");
+    }
+}
